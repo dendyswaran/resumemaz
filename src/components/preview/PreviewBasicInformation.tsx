@@ -45,9 +45,9 @@ export default function PreviewBasicInformation() {
         <section className="w-4/5 flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <h1 className="text-xl text-gray-700 font-bold">Profile</h1>
-            <p className="text-gray-700 text-sm">
-              {resumeState.profileDescription}
-            </p>
+            <p className="text-gray-700 text-sm" dangerouslySetInnerHTML={{
+              __html: resumeState.profileDescription
+            }} /> 
           </div>
 
           <div className="flex flex-col gap-2">

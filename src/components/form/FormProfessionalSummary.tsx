@@ -1,5 +1,3 @@
-
-
 import { useState } from 'react';
 import FormGroup from '../shared/FormGroup';
 import InputTextarea from '../shared/InputTextarea';
@@ -11,16 +9,13 @@ export default function FormProfessionalSummary() {
   const [value, setValue] = useState<string>('');
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const textValue = event.target.value;
-    if (textValue.length > 700) {
-      return;
-    } else {
-      setValue(textValue);
-      setResumeState((prevState) => ({
-        ...prevState,
-        profileDescription: textValue,
-      }));
-    }
-  }
+
+    setValue(textValue);
+    setResumeState((prevState) => ({
+      ...prevState,
+      profileDescription: textValue,
+    }));
+  };
 
   return (
     <div className="flex flex-col gap-2 p-5 h-full">
