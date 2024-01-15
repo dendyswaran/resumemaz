@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { EmploymentHistory } from '../../../types/EmploymentHistory';
 import FormGroup from '../../shared/FormGroup';
@@ -9,7 +8,7 @@ import InputTextarea from '../../shared/InputTextarea';
 type DetailEmploymentHistoryProps = {
   onCancel: () => void;
   onSubmit?: (result: EmploymentHistory) => void;
-  employmentHistory?: EmploymentHistory;
+  employmentHistory?: EmploymentHistory | null;
 };
 
 export default function DetailEmploymentHistory(
@@ -97,7 +96,20 @@ export default function DetailEmploymentHistory(
         >
           Cancel
         </button>
-        <button className="bg-blue-600 text-white text-xs rounded-md p-2 w-fit h-fit">
+        <button
+          className="bg-blue-600 text-white text-xs rounded-md p-2 w-fit h-fit"
+          onClick={() =>
+            props.onSubmit?.({
+              index: employmentHistory?.index ?? null,
+              jobTitle,
+              startDate,
+              endDate,
+              employer,
+              city,
+              description,
+            })
+          }
+        >
           Apply
         </button>
       </div>

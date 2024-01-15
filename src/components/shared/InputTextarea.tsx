@@ -20,7 +20,7 @@ export default function InputTextarea(props: InputTextProps) {
           Recruiter tip: write 50-200 characters to increase interview chances
         </span>
         <span className="text-xs text-gray-500 text-right">
-          {props.textLength || 0}/300
+          {props.textLength || 0}/300+
         </span>
       </div>
     </div>

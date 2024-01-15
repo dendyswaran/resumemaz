@@ -1,4 +1,5 @@
 export type EmploymentHistory = {
+  index?: number | null;
   employer: string;
   jobTitle: string;
   startDate: string;

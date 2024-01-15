@@ -3,15 +3,22 @@
 import { useState } from 'react';
 import FormGroup from '../shared/FormGroup';
 import InputTextarea from '../shared/InputTextarea';
+import { useAtom } from 'jotai';
+import { ResumeState } from '../../libs/state';
 
 export default function FormProfessionalSummary() {
+  const [_, setResumeState] = useAtom(ResumeState);
   const [value, setValue] = useState<string>('');
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const textValue = event.target.value;
-    if (textValue.length > 300) {
+    if (textValue.length > 700) {
       return;
     } else {
       setValue(textValue);
+      setResumeState((prevState) => ({
+        ...prevState,
+        profileDescription: textValue,
+      }));
     }
   }
 

@@ -1,10 +1,12 @@
-
-
 import React from 'react';
 import InputText from './InputText';
 import Label from './Label';
 
-export default function InputPhoto() {
+interface InputPhotoProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  onResult?: (result: string | ArrayBuffer | null) => void;
+}
+
+export default function InputPhoto({ onResult }: InputPhotoProps) {
   const [file, setFile] = React.useState<string | ArrayBuffer | null>(null);
 
   // function to handle the change of the input file
@@ -21,6 +23,7 @@ export default function InputPhoto() {
     reader.onloadend = () => {
       // set the file
       setFile(reader.result);
+      onResult?.(reader.result);
     };
   };
 
@@ -34,7 +37,12 @@ export default function InputPhoto() {
             alt="preview"
             className="w-20 h-20 rounded-lg object-cover"
           />
-          <button className='bg-gray-200 text-gray-700 text-xs rounded-md p-2 w-fit h-fit' onClick={() => setFile(null)}>Remove Photo</button>
+          <button
+            className="bg-gray-200 text-gray-700 text-xs rounded-md p-2 w-fit h-fit"
+            onClick={() => setFile(null)}
+          >
+            Remove Photo
+          </button>
         </div>
       ) : (
         <>
