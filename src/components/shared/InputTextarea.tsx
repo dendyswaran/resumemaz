@@ -18,7 +18,7 @@ export default function InputTextarea(props: InputTextProps) {
   return (
     <div className="flex flex-col">
       <ReactQuill
-        
+        value={props.value as Value}
         onChange={handleChange}
         className="text-gray-700 border border-transparent rounded-md p-2 bg-gray-200 focus:outline-none"
       />

@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { FeaturedProject } from '../../../types/FeaturedProject';
 import FormGroup from '../../shared/FormGroup';
@@ -9,7 +8,7 @@ import InputTextarea from '../../shared/InputTextarea';
 type DetailEmploymentHistoryProps = {
   onCancel: () => void;
   onSubmit?: (result: FeaturedProject) => void;
-  featuredProject?: FeaturedProject;
+  featuredProject?: FeaturedProject | null;
 };
 
 export default function DetailFeaturedProject(
@@ -41,14 +40,12 @@ export default function DetailFeaturedProject(
             <div className="grid grid-cols-2 gap-2">
               <InputText
                 type="text"
-                name="job_title"
                 placeholder="MM / YY"
                 value={startDate}
                 onChange={(v) => setStartDate(v.target.value)}
               />
               <InputText
                 type="text"
-                name="job_title"
                 placeholder="MM / YY"
                 value={endDate}
                 onChange={(v) => setEndDate(v.target.value)}
@@ -86,7 +83,19 @@ export default function DetailFeaturedProject(
         >
           Cancel
         </button>
-        <button className="bg-blue-600 text-white text-xs rounded-md p-2 w-fit h-fit">
+        <button
+          className="bg-blue-600 text-white text-xs rounded-md p-2 w-fit h-fit"
+          onClick={() =>
+            props.onSubmit?.({
+              index: props.featuredProject?.index ?? null,
+              activity,
+              startDate,
+              endDate,
+              city,
+              description,
+            })
+          }
+        >
           Apply
         </button>
       </div>

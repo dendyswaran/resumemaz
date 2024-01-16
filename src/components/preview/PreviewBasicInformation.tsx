@@ -73,7 +73,9 @@ export default function PreviewBasicInformation() {
                       {item.startDate} - {item.endDate}
                     </span>
                   </div>
-                  <p className="text-gray-700 text-sm mt-2">{item.description}</p>
+                  <div className="text-gray-700 text-sm mt-2 html" dangerouslySetInnerHTML={{
+                    __html: item.description
+                  }} />
                 </div>
               ))}
             </div>

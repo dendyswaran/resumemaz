@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import DetailEmploymentHistory from './partials/DetailEmploymentHistory';
-import { EmploymentHistory } from '../../types/EmploymentHistory';
 import { useAtom } from 'jotai';
+import { useState } from 'react';
 import { ResumeState } from '../../libs/state';
-import { PencilIcon, TrashIcon } from '@heroicons/react/16/solid';
+import { EmploymentHistory } from '../../types/EmploymentHistory';
+import HistoryItem from '../shared/HistoryItem';
+import DetailEmploymentHistory from './partials/DetailEmploymentHistory';
 
 export default function FormEmploymentHistory() {
   const [resumeState, setResumeState] = useAtom(ResumeState);
@@ -15,7 +15,6 @@ export default function FormEmploymentHistory() {
       employmentHistory.index != null &&
       typeof employmentHistory.index === 'number'
     ) {
-      alert(employmentHistory.index);
       setResumeState((prevState) => {
         const employmentHistories = [...prevState.employmentHistories];
         employmentHistories[employmentHistory.index!] = employmentHistory;
@@ -72,40 +71,17 @@ export default function FormEmploymentHistory() {
 
       <div className="flex flex-col gap-5 pt-[10px]">
         {resumeState.employmentHistories.map((item, index) => (
-          <div
+          <HistoryItem
             key={`emp-${index}`}
-            className="flex items-center justify-between py-2 px-4 bg-gray-100 rounded-md"
-          >
-            <div className="flex flex-col gap-1">
-              <div className="flex gap-1">
-                <span className="text-sm text-gray-700 font-bold">
-                  {item.jobTitle}
-                </span>
-                <span className="text-sm text-gray-700 font-bold">
-                  at {item.employer}
-                </span>
-              </div>
-
-              <span className="text-xs text-gray-700">
-                {item.startDate} - {item.endDate}
-              </span>
-            </div>
-
-            <div className="flex gap-2">
-              <button
-                className="text-blue-500 text-sm font-bold"
-                onClick={() => handleUpdateEmploymentHistory(index, item)}
-              >
-                <PencilIcon className="h-4 w-4" />
-              </button>
-              <button
-                className="text-red-500 text-sm font-bold"
-                onClick={() => handleDeleteEmploymentHistory(index)}
-              >
-                <TrashIcon className="h-4 w-4" />
-              </button>
-            </div>
-          </div>
+            index={index}
+            title={item.jobTitle}
+            subTitle={item.employer}
+            startDate={item.startDate}
+            endDate={item.endDate}
+            onDelete={handleDeleteEmploymentHistory}
+            onUpdate={handleUpdateEmploymentHistory}
+            data={item}
+          />
         ))}
         <div className="flex flex-col gap-2">
           {toggleDetail ? (
