@@ -4,8 +4,8 @@ interface HistoryItemProps<T> {
   index: number;
   title: string;
   subTitle?: string | null;
-  startDate: string;
-  endDate: string;
+  startDate?: string;
+  endDate?: string;
   onDelete: (index: number) => void;
   onUpdate: (index: number, item: T) => void;
   data: T;
@@ -19,14 +19,16 @@ export default function HistoryItem<T>(props: HistoryItemProps<T>) {
           <span className="text-sm text-gray-700 font-bold">{props.title}</span>
           {props.subTitle && (
             <span className="text-sm text-gray-700 font-bold">
-              {props.subTitle}
+              - {props.subTitle}
             </span>
           )}
         </div>
 
-        <span className="text-xs text-gray-700">
-          {props.startDate} - {props.endDate}
-        </span>
+        {props.startDate && props.endDate && (
+          <span className="text-xs text-gray-700">
+            {props.startDate} - {props.endDate}
+          </span>
+        )}
       </div>
 
       <div className="flex gap-2">

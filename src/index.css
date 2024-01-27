@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 .html ul {
-    list-style: circle;
-    margin-left: 20px;
+  list-style: circle;
+  margin-left: 20px;
+}
+
+.html ol {
+  list-style: decimal;
+  margin-left: 20px;
 }

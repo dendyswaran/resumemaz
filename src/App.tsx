@@ -2,6 +2,7 @@ import FormBasicInformation from './components/form/FormBasicInformation';
 import FormEmploymentHistory from './components/form/FormEmploymentHistory';
 import FormFeaturedProject from './components/form/FormFeaturedProject';
 import FormProfessionalSummary from './components/form/FormProfessionalSummary';
+import FormSkills from './components/form/FormSkills';
 import PreviewBasicInformation from './components/preview/PreviewBasicInformation';
 import PrintArea from './components/shared/PrintArea';
 
@@ -28,6 +29,7 @@ export default function App() {
         <FormProfessionalSummary />
         <FormEmploymentHistory />
         <FormFeaturedProject />
+        <FormSkills />
       </div>
 
       <div className="fixed right-0 w-1/2 h-full bg-gray-200 p-10">

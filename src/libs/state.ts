@@ -1,6 +1,7 @@
 import { atom } from "jotai";
 import { EmploymentHistory } from "../types/EmploymentHistory";
 import { FeaturedProject } from "../types/FeaturedProject";
+import { Skill } from "../types/Skill";
 
 type ResumeStateType = {
     jobTitle: string;
@@ -14,6 +15,7 @@ type ResumeStateType = {
     profileDescription: string;
     employmentHistories: EmploymentHistory[];
     featuredProjects: FeaturedProject[];
+    skills: Skill[];
 }
 
 export const ResumeState = atom<ResumeStateType>({
@@ -28,4 +30,5 @@ export const ResumeState = atom<ResumeStateType>({
     profileDescription: "",
     employmentHistories: [],
     featuredProjects: [],
+    skills: [],
 })

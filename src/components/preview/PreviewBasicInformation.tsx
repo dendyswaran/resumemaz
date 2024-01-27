@@ -2,6 +2,7 @@ import { useAtom } from 'jotai';
 import LabelValue from '../shared/LabelValue';
 import { ResumeState } from '../../libs/state';
 import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/16/solid';
+import LabelSkillValue from '../shared/LabelSkillValue';
 
 export default function PreviewBasicInformation() {
   const [resumeState, _] = useAtom(ResumeState);
@@ -40,14 +41,23 @@ export default function PreviewBasicInformation() {
         <div className="w-1/5 flex flex-col gap-4">
           <LabelValue label="Date of Birth" value="05 October 1990" />
           <LabelValue label="Nationality" value="Indonesia" />
+          <LabelValue label="Skills" />
+          {resumeState.skills?.map((item, index) => {
+            return (
+              <LabelSkillValue
+                key={`prev-skill-${index}`}
+                skill={item}
+              />
+            );
+          })}
         </div>
 
         <section className="w-4/5 flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <h1 className="text-xl text-gray-700 font-bold">Profile</h1>
-            <p className="text-gray-700 text-sm" dangerouslySetInnerHTML={{
+            <p className="text-gray-700 text-sm html" dangerouslySetInnerHTML={{
               __html: resumeState.profileDescription
-            }} /> 
+            }} />
           </div>
 
           <div className="flex flex-col gap-2">
