@@ -39,17 +39,23 @@ export default function PreviewBasicInformation() {
 
       <div className="flex gap-5 p-7">
         <div className="w-1/5 flex flex-col gap-4">
-          <LabelValue label="Date of Birth" value="05 October 1990" />
-          <LabelValue label="Nationality" value="Indonesia" />
-          <LabelValue label="Skills" />
-          {resumeState.skills?.map((item, index) => {
-            return (
-              <LabelSkillValue
-                key={`prev-skill-${index}`}
-                skill={item}
-              />
-            );
-          })}
+          <div className='flex flex-col gap-2'>
+            <LabelValue label="Date of Birth" value="05 October 1990" />
+            <LabelValue label="Nationality" value="Indonesia" />
+          </div>
+          <div className='flex flex-col gap-2'>
+            <span className='text-gray-700 text-sm font-bold'>
+              Skills
+            </span>
+            {resumeState.skills?.map((item, index) => {
+              return (
+                <LabelSkillValue
+                  key={`prev-skill-${index}`}
+                  skill={item}
+                />
+              );
+            })}
+          </div>
         </div>
 
         <section className="w-4/5 flex flex-col gap-4">
