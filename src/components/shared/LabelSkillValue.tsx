@@ -9,7 +9,7 @@ type LabelProps = {
 export default function LabelSkillValue({ skill }: LabelProps) {
     return (
         <div className='flex flex-col gap-1'>
-            <span className="text-gray-700 text-sm">{skill.skillName}</span>
+            <span className="text-gray-700 text-xs">{skill.skillName}</span>
             <ExpBox skill={skill} />
         </div>
     );
@@ -34,7 +34,7 @@ const ExpBox = ({ skill }: { skill: Skill }) => {
     return (
         <div className='grid grid-cols-4 gap-1 w-full'>
             {Array.from(Array(4).keys()).map((_, index: number) => (
-                <div key={index} className={`${getColor(index)} w-full h-2 rounded-lg`}></div>
+                <div key={index} className={`${getColor(index)} w-full h-1 rounded-lg`}></div>
             ))}
         </div>
     )

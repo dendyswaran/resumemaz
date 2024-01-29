@@ -3,6 +3,7 @@ import LabelValue from '../shared/LabelValue';
 import { ResumeState } from '../../libs/state';
 import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/16/solid';
 import LabelSkillValue from '../shared/LabelSkillValue';
+import ShowIf from '../shared/ShowIf';
 
 export default function PreviewBasicInformation() {
   const [resumeState, _] = useAtom(ResumeState);
@@ -56,46 +57,159 @@ export default function PreviewBasicInformation() {
               );
             })}
           </div>
+          <ShowIf if={resumeState.socialLinks?.length > 0}>
+            <div className='flex flex-col gap-2'>
+              <span className='text-gray-700 text-sm font-bold'>
+                Links
+              </span>
+              {resumeState.socialLinks?.map((item, index) => {
+                return (
+                  <LabelValue
+                    key={`prev-slink-${index}`}
+                    label={item.label}
+                    value={item.link}
+                  />
+                );
+              })}
+            </div>
+          </ShowIf>
         </div>
 
         <section className="w-4/5 flex flex-col gap-4">
-          <div className="flex flex-col gap-2">
-            <h1 className="text-xl text-gray-700 font-bold">Profile</h1>
-            <p className="text-gray-700 text-sm html" dangerouslySetInnerHTML={{
-              __html: resumeState.profileDescription
-            }} />
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <h1 className="text-xl text-gray-700 font-bold">
-              Employment History
-            </h1>
-            <div className="flex flex-col gap-4">
-              {resumeState.employmentHistories.map((item, index) => (
-                <div key={`prev-emp-${index}`} className="flex flex-col">
-                  <div className="flex flex-wrap gap-2">
-                    <span className="text-gray-700 text-sm font-bold">
-                      {item.jobTitle},
-                    </span>
-                    <span className="text-gray-700 text-sm font-bold">
-                      {item.employer},
-                    </span>
-                    <span className="text-gray-700 text-sm font-bold">
-                      {item.city}
-                    </span>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="text-gray-700 text-sm">
-                      {item.startDate} - {item.endDate}
-                    </span>
-                  </div>
-                  <div className="text-gray-700 text-sm mt-2 html" dangerouslySetInnerHTML={{
-                    __html: item.description
-                  }} />
-                </div>
-              ))}
+          <ShowIf if={resumeState.profileDescription.length > 0}>
+            <div className="flex flex-col gap-2">
+              <h1 className="text-xl text-gray-700 font-bold">Profile</h1>
+              <p className="text-gray-700 text-sm html" dangerouslySetInnerHTML={{
+                __html: resumeState.profileDescription
+              }} />
             </div>
-          </div>
+          </ShowIf>
+
+          <ShowIf if={resumeState.employmentHistories.length > 0}>
+            <div className="flex flex-col gap-2">
+              <h1 className="text-xl text-gray-700 font-bold">
+                Employment History
+              </h1>
+              <div className="flex flex-col gap-4">
+                {resumeState.employmentHistories.map((item, index) => (
+                  <div key={`prev-emp-${index}`} className="flex flex-col">
+                    <div className="flex flex-wrap gap-2">
+                      <span className="text-gray-700 text-sm font-bold">
+                        {item.jobTitle},
+                      </span>
+                      <span className="text-gray-700 text-sm font-bold">
+                        {item.employer},
+                      </span>
+                      <span className="text-gray-700 text-sm font-bold">
+                        {item.city}
+                      </span>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="text-gray-700 text-sm">
+                        {item.startDate} - {item.endDate}
+                      </span>
+                    </div>
+                    <div className="text-gray-700 text-sm mt-2 html" dangerouslySetInnerHTML={{
+                      __html: item.description
+                    }} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </ShowIf>
+
+          <ShowIf if={resumeState.featuredProjects.length > 0}>
+            <div className="flex flex-col gap-2">
+              <h1 className="text-xl text-gray-700 font-bold">
+                Featured Projects
+              </h1>
+              <div className="flex flex-col gap-4">
+                {resumeState.featuredProjects.map((item, index) => (
+                  <div key={`prev-emp-${index}`} className="flex flex-col">
+                    <div className="flex flex-wrap gap-2">
+                      <span className="text-gray-700 text-sm font-bold">
+                        {item.activity},
+                      </span>
+                      <span className="text-gray-700 text-sm font-bold">
+                        {item.city}
+                      </span>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="text-gray-700 text-sm">
+                        {item.startDate} - {item.endDate}
+                      </span>
+                    </div>
+                    <div className="text-gray-700 text-sm mt-2 html" dangerouslySetInnerHTML={{
+                      __html: item.description
+                    }} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </ShowIf>
+
+          <ShowIf if={resumeState.educationHistories.length > 0}>
+            <div className="flex flex-col gap-2">
+              <h1 className="text-xl text-gray-700 font-bold">
+                Educations
+              </h1>
+              <div className="flex flex-col gap-4">
+                {resumeState.educationHistories.map((item, index) => (
+                  <div key={`prev-emp-${index}`} className="flex flex-col">
+                    <div className="flex flex-wrap gap-2">
+                      <span className="text-gray-700 text-sm font-bold">
+                        {item.school},
+                      </span>
+                      <span className="text-gray-700 text-sm font-bold">
+                        {item.degree},
+                      </span>
+                      <span className="text-gray-700 text-sm font-bold">
+                        {item.city}
+                      </span>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="text-gray-700 text-sm">
+                        {item.startDate} - {item.endDate}
+                      </span>
+                    </div>
+                    <div className="text-gray-700 text-sm mt-2 html" dangerouslySetInnerHTML={{
+                      __html: item.description
+                    }} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </ShowIf>
+
+          <ShowIf if={resumeState.certificationHistories.length > 0}>
+            <div className="flex flex-col gap-2">
+              <h1 className="text-xl text-gray-700 font-bold">
+                Certifications
+              </h1>
+              <div className="flex flex-col gap-4">
+                {resumeState.certificationHistories.map((item, index) => (
+                  <div key={`prev-emp-${index}`} className="flex flex-col">
+                    <div className="flex flex-wrap gap-2">
+                      <span className="text-gray-700 text-sm font-bold">
+                        {item.activity},
+                      </span>
+                      <span className="text-gray-700 text-sm font-bold">
+                        {item.city}
+                      </span>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="text-gray-700 text-sm">
+                        {item.startDate} - {item.endDate}
+                      </span>
+                    </div>
+                    <div className="text-gray-700 text-sm mt-2 html" dangerouslySetInnerHTML={{
+                      __html: item.description
+                    }} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </ShowIf>
         </section>
       </div>
     </div>

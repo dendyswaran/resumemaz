@@ -2,6 +2,9 @@ import { atom } from "jotai";
 import { EmploymentHistory } from "../types/EmploymentHistory";
 import { FeaturedProject } from "../types/FeaturedProject";
 import { Skill } from "../types/Skill";
+import { EducationHistory } from "../types/EducationHistory";
+import { CertificationHistory } from "../types/CertificationHistory";
+import { SocialLink } from "../types/SocialLink";
 
 type ResumeStateType = {
     jobTitle: string;
@@ -14,8 +17,11 @@ type ResumeStateType = {
     profilePicture: string;
     profileDescription: string;
     employmentHistories: EmploymentHistory[];
+    educationHistories: EducationHistory[];
+    certificationHistories: CertificationHistory[];
     featuredProjects: FeaturedProject[];
     skills: Skill[];
+    socialLinks: SocialLink[];
 }
 
 export const ResumeState = atom<ResumeStateType>({
@@ -29,6 +35,9 @@ export const ResumeState = atom<ResumeStateType>({
     profilePicture: "",
     profileDescription: "",
     employmentHistories: [],
+    educationHistories: [],
+    certificationHistories: [],
     featuredProjects: [],
     skills: [],
+    socialLinks: [],
 })

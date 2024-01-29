@@ -5,8 +5,8 @@ import { useAtom } from 'jotai';
 import { ResumeState } from '../../libs/state';
 
 export default function FormProfessionalSummary() {
-  const [_, setResumeState] = useAtom(ResumeState);
-  const [value, setValue] = useState<string>('');
+  const [resumeState, setResumeState] = useAtom(ResumeState);
+  const [value, setValue] = useState<string>(resumeState.profileDescription);
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     const textValue = event.target.value;
 
@@ -33,7 +33,7 @@ export default function FormProfessionalSummary() {
               rows={10}
               onChange={handleChange}
               textLength={value.length}
-              value={value.length > 300 ? value.substring(0, 300) : value}
+              value={value}
             />
           </FormGroup>
         </div>

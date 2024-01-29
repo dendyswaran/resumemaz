@@ -1,12 +1,32 @@
+import { useAtom } from 'jotai';
 import FormBasicInformation from './components/form/FormBasicInformation';
+import FormCertificationHistory from './components/form/FormCertificationHistory';
+import FormEducationHistory from './components/form/FormEducationtHistory';
 import FormEmploymentHistory from './components/form/FormEmploymentHistory';
 import FormFeaturedProject from './components/form/FormFeaturedProject';
 import FormProfessionalSummary from './components/form/FormProfessionalSummary';
 import FormSkills from './components/form/FormSkills';
 import PreviewBasicInformation from './components/preview/PreviewBasicInformation';
 import PrintArea from './components/shared/PrintArea';
+import { ResumeState } from './libs/state';
+import { useEffect } from 'react';
+import FormSocialLinks from './components/form/FormSocialLink';
 
 export default function App() {
+
+  const [_, setResumeState] = useAtom(ResumeState);
+
+  // first time load
+  // check if there is data in local storage
+  useEffect(() => {
+    if (localStorage.getItem('resumemaz')) {
+      const data = JSON.parse(localStorage.getItem('resumemaz')!);
+      console.log(data);
+
+      setResumeState(data)
+    }
+  }, [])
+
   return (
     <div className="relative flex w-full min-h-screen gap-2">
       <div className="flex flex-col w-1/2 h-full bg-white p-5">
@@ -30,9 +50,12 @@ export default function App() {
         <FormEmploymentHistory />
         <FormFeaturedProject />
         <FormSkills />
+        <FormEducationHistory />
+        <FormCertificationHistory />
+        <FormSocialLinks />
       </div>
 
-      <div className="fixed right-0 w-1/2 h-full bg-gray-200 p-10">
+      <div className="fixed right-0 w-1/2 h-full bg-gray-200 p-10 overflow-y-scroll">
         <PrintArea>
           <PreviewBasicInformation />
         </PrintArea>

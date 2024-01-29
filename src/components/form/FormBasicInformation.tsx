@@ -7,7 +7,7 @@ import Label from '../shared/Label';
 import { useAtom } from 'jotai';
 
 export default function FormBasicInformation() {
-  const [_, setResumeState] = useAtom(ResumeState);
+  const [resumeState, setResumeState] = useAtom(ResumeState);
 
   return (
     <div className="flex flex-col gap-2 p-5 h-full">
@@ -19,6 +19,7 @@ export default function FormBasicInformation() {
             <Label htmlFor="name">Job Title</Label>
             <InputText
               type="text"
+              value={resumeState.jobTitle}
               onChange={(v) =>
                 setResumeState((prevState) => ({
                   ...prevState,
@@ -31,7 +32,8 @@ export default function FormBasicInformation() {
           <FormGroup>
             <Label htmlFor="email">First Name</Label>
             <InputText
-              type="email"
+              type="text"
+              value={resumeState.firstName}
               onChange={(v) =>
                 setResumeState((prevState) => ({
                   ...prevState,
@@ -45,6 +47,7 @@ export default function FormBasicInformation() {
             <Label htmlFor="email">Last Name</Label>
             <InputText
               type="text"
+              value={resumeState.lastName}
               onChange={(v) =>
                 setResumeState((prevState) => ({
                   ...prevState,
@@ -58,6 +61,7 @@ export default function FormBasicInformation() {
             <Label htmlFor="name">Country</Label>
             <InputText
               type="text"
+              value={resumeState.country}
               onChange={(v) =>
                 setResumeState((prevState) => ({
                   ...prevState,
@@ -84,6 +88,7 @@ export default function FormBasicInformation() {
             <Label htmlFor="email">Email</Label>
             <InputText
               type="email"
+              value={resumeState.email}
               onChange={(v) =>
                 setResumeState((prevState) => ({
                   ...prevState,
@@ -97,6 +102,7 @@ export default function FormBasicInformation() {
             <Label htmlFor="name">Phone</Label>
             <InputText
               type="text"
+              value={resumeState.phone}
               onChange={(v) =>
                 setResumeState((prevState) => ({
                   ...prevState,
@@ -110,6 +116,7 @@ export default function FormBasicInformation() {
             <Label htmlFor="name">City</Label>
             <InputText
               type="text"
+              value={resumeState.city}
               onChange={(v) =>
                 setResumeState((prevState) => ({
                   ...prevState,
