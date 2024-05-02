@@ -41,8 +41,8 @@ export default function PreviewBasicInformation() {
       <div className="flex gap-5 p-7">
         <div className="w-1/5 flex flex-col gap-4">
           <div className='flex flex-col gap-2'>
-            <LabelValue label="Date of Birth" value="05 October 1990" />
-            <LabelValue label="Nationality" value="Indonesia" />
+            <LabelValue label="Date of Birth" value={resumeState.dateOfBirth} />
+            <LabelValue label="Nationality" value={resumeState.country} />
           </div>
           <div className='flex flex-col gap-2'>
             <span className='text-gray-700 text-sm font-bold'>

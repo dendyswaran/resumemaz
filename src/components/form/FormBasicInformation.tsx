@@ -125,6 +125,20 @@ export default function FormBasicInformation() {
               }
             />
           </FormGroup>
+
+          <FormGroup>
+            <Label htmlFor="name">Date of Birth</Label>
+            <InputText
+              type="text"
+              value={resumeState.dateOfBirth}
+              onChange={(v) =>
+                setResumeState((prevState) => ({
+                  ...prevState,
+                  dateOfBirth: v.target.value,
+                }))
+              }
+            />
+          </FormGroup>
         </div>
       </div>
     </div>

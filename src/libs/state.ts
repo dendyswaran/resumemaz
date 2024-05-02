@@ -13,6 +13,7 @@ type ResumeStateType = {
     firstName: string;
     lastName: string;
     country: string;
+    dateOfBirth: string;
     city: string;
     profilePicture: string;
     profileDescription: string;
@@ -32,6 +33,7 @@ export const ResumeState = atom<ResumeStateType>({
     lastName: "xxx",
     city: "xxx",
     country: "xxx",
+    dateOfBirth: "xxx",
     profilePicture: "",
     profileDescription: "",
     employmentHistories: [],
