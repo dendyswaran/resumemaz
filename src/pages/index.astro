@@ -1,0 +1,20 @@
+---
+import ResumeBuilder from '../components/ResumeBuilder';
+import '../styles/app.scss';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A little structure for your next big move. Build, preview, and download your resume for free with Resumemaz." />
+    <meta name="theme-color" content="#161616" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Resumemaz — Your next chapter starts here</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#editor">Skip to resume editor</a>
+    <ResumeBuilder client:load />
+    <noscript><p class="noscript">Enable JavaScript to edit your resume and download a PDF. Your information stays in this browser.</p></noscript>
+  </body>
+</html>
